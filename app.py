@@ -5,11 +5,11 @@ app = Flask(__name__)
 def handle_input(user_input):
     user_input = user_input.lower()
 
-    if any(saudacao in user_input for saudacao in ["noite", "dia", "tarde", "ola", "oi"]):
+    if any(saudacao in user_input for saudacao in ["noite", "dia", "tarde", "ola", "olá", "oi"]):
          return ("Olá! Sou o assistente técnico da Panmachine.<br>"
                 "Como posso ajudar você com a operação da máquina hoje?")
     
-    elif any(cmd in user_input for cmd in ["referenciar", "zerar", "presset", "precetar"]):
+    elif any(cmd in user_input for cmd in ["referenciar", "zerar", "presset", "precetar", "precipitar"]):
         link = "https://www.youtube.com/watch?v=navfeH6Ycvk"
         return f'Assista ao vídeo: <a href="{link}" target="_blank">Clique aqui para Referenciar</a>'
 
