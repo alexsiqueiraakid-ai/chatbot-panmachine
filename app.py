@@ -9,7 +9,7 @@ def handle_input(user_input):
          return ("Olá! Sou o assistente técnico da Panmachine.<br>"
                 "Como posso ajudar você com a operação da máquina hoje?")
     
-    elif any(cmd in user_input for cmd in ["referenciar", "zerar", "presset", "precetar", "precipitar"]):
+    elif any(cmd in user_input for cmd in ["referenciar", "zerar ferramenta", "presset", "precetar", "precipitar"]):
         link = "https://www.youtube.com/watch?v=navfeH6Ycvk"
         return f'Assista ao vídeo: <a href="{link}" target="_blank">Clique aqui para Referenciar</a>'
 
@@ -17,25 +17,25 @@ def handle_input(user_input):
         link = "https://www.youtube.com/watch?v=SFcdutK9iYk"
         return f'Veja como definir a origem: <a href="{link}" target="_blank">Tutorial Ponto Zero</a>'
 
-    elif any(cmd in user_input for cmd in ["programa na memoria"]):
+    elif any(cmd in user_input for cmd in ["programa na memoria", "programa na memória"]):
         link = "https://www..............."
         return f'Veja como executar o programa na memória da máquina: <a href="{link}" target="_blank">Tutorial Cartao</a>'
 
-    elif any(cmd in user_input for cmd in ["programa pelo pendrive"]):
+    elif any(cmd in user_input for cmd in ["pendrive", "programa pelo pendrive", "programa pelo pen drive", "programa no pendrive"]):
         link = "https://www..............."
         return f'Veja como executar o programa via pendrive: <a href="{link}" target="_blank">Tutorial Pendrive</a>'
     
-    elif any(cmd in user_input for cmd in ["programa pelo cartao"]):
+    elif any(cmd in user_input for cmd in ["programa pelo cartao", "programa pelo cartão"]):
         link = "https://www..............."
         return f'Veja como executar o programa via cartão: <a href="{link}" target="_blank">Tutorial Cartao</a>'
     
     elif any(cmd in user_input for cmd in ["chamar no bloco", "chamada de bloco", "meio do programa"]):
         link = "https://www..............."
-        return f'Veja como fazer chamada de bloco: <a href="{link}" target="_blank">Tutorial Cartao</a>'
+        return f'Veja como fazer chamada de bloco: <a href="{link}" target="_blank">Tutorial</a>'
     
     elif any(cmd in user_input for cmd in ["parar o programa", "abrir a porta", "sem resetar", "sem resetar o programa"]):
         link = "https://www..............."
-        return f'Veja como abrir a porta sem resetar o programa: <a href="{link}" target="_blank">Tutorial Cartao</a>'
+        return f'Veja como abrir a porta sem resetar o programa: <a href="{link}" target="_blank">Tutorial</a>'
     
       # Códigos M e G comuns
     elif any(cmd in user_input for cmd in ["codigos g" , "g code", "códigos g"]):
@@ -46,7 +46,7 @@ def handle_input(user_input):
                 "<b>G43:</b> Compensação de comprimento de ferramenta.")
     
     
-   elif any(cmd in user_input for cmd in ["miscelânea" , "miscelaneas", "codigos m", "códigos m"]):
+    elif any(cmd in user_input for cmd in ["miscelânea" , "miscelaneas", "codigos m", "códigos m"]):
         return ("Aqui estão os principais códigos M:<br>"
                 "<b>M03:</b> Liga o fuso (sentido horário)<br>"
                 "<b>M05:</b> Desliga o fuso<br>"
