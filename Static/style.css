@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: lab(92.02% 1.69 0.59);
+}
+
+.chat-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.header {
+    background: #fff;
+    padding: 20px;
+    color: #bd3030;
+    text-align: center;
+}
+
+#chat-box {
+    height: 400px;
+    padding: 20px;
+    overflow-y: scroll;
+    background: #e9e9e9;
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    line-height: 1.5;
+}
+
+.user-message {
+    background: #0078D7;
+    color: #fff;
+    text-align: right;
+}
+
+.bot-response {
+    background: #ddd;
+    color: #333;
+    text-align: left;
+}
+
+.sender {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+#user-input-form {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+#user-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+#user-input:focus {
+    border-color: #0078D7;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    background: #0078D7;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background: #005a9e;
+}
+
+#user-input-form {
+    display: flex;
+    align-items: center; /* Alinha verticalmente os botões e o input */
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background: #fff;
+}
+
+#mic-btn:hover {
+    transform: scale(1.2);
+    transition: 0.2s;
+}
