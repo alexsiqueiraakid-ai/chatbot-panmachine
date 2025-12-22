@@ -1,4 +1,4 @@
-const API_URL = "https://SEU-BACKEND.onrender.com/chat";
+const API_URL = "https://chatbot-panmachine.onrender.com/";
 // ⬆️ troque pela URL real do seu Flask (Render / Railway / Fly.io)
 
 const form = document.getElementById("user-input-form");
@@ -49,3 +49,4 @@ form.addEventListener("submit", async (e) => {
         `;
     }
 });
+
