@@ -37,8 +37,8 @@ def handle_input(user_input):
         link = "https://www..............."
         return f'Veja como abrir a porta sem resetar o programa: <a href="{link}" target="_blank">Tutorial Cartao</a>'
     
-      # Códigos G e M comuns
-    elif "codigo g" in user_input or "códigos g" in user_input:
+      # Códigos M e G comuns
+    elif any(cmd in user_input for cmd in ["codigos g" , "g code", "códigos g"]):
         return ("Aqui estão os principais códigos G:<br>"
                 "<b>G00:</b> Posicionamento rápido<br>"
                 "<b>G01:</b> Interpolação linear (avanço programado)<br>"
@@ -46,7 +46,7 @@ def handle_input(user_input):
                 "<b>G43:</b> Compensação de comprimento de ferramenta.")
     
     
-    elif "codigo m" in user_input or "códigos m" in user_input:
+   elif any(cmd in user_input for cmd in ["miscelânea" , "miscelaneas", "codigos m", "códigos m"]):
         return ("Aqui estão os principais códigos M:<br>"
                 "<b>M03:</b> Liga o fuso (sentido horário)<br>"
                 "<b>M05:</b> Desliga o fuso<br>"
@@ -138,7 +138,7 @@ def handle_input(user_input):
    
 
     
-    return "Desculpe, não entendi. Pode repetir?"
+    return "Desculpe, não entendi. Pode repetir? Pergunte por exemplo: Qual os códigos G? Qual as miscelâneas"
 
 @app.route("/")
 def welcome():
