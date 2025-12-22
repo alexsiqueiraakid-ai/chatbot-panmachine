@@ -2,15 +2,18 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: lab(92.02% 1.69 0.59);
+    background: #f2f4f7;
 }
 
 .chat-container {
     max-width: 600px;
-    margin: 50px auto;
+    height: 650px;
+    margin: 40px auto;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
 }
 
@@ -22,9 +25,9 @@ body {
 }
 
 #chat-box {
-    height: 400px;
+    flex: 1;
     padding: 20px;
-    overflow-y: scroll;
+    overflow-y: auto;
     background: #e9e9e9;
 }
 
@@ -33,29 +36,35 @@ body {
     padding: 10px;
     border-radius: 5px;
     line-height: 1.5;
+    max-width: 80%;
+    word-wrap: break-word;
 }
 
 .user-message {
     background: #0078D7;
     color: #fff;
+    margin-left: auto;
     text-align: right;
 }
 
 .bot-response {
     background: #ddd;
     color: #333;
-    text-align: left;
+    margin-right: auto;
 }
 
 .sender {
     font-weight: bold;
-    margin-right: 5px;
+    margin-bottom: 4px;
+    display: block;
 }
 
 #user-input-form {
     display: flex;
+    align-items: center;
     padding: 10px;
     border-top: 1px solid #ccc;
+    background: #fff;
 }
 
 #user-input {
@@ -84,12 +93,11 @@ button[type="submit"]:hover {
     background: #005a9e;
 }
 
-#user-input-form {
-    display: flex;
-    align-items: center; /* Alinha verticalmente os botões e o input */
-    padding: 10px;
-    border-top: 1px solid #ccc;
-    background: #fff;
+#mic-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
 }
 
 #mic-btn:hover {
