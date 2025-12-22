@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apostila Inteligente de CNC</title>
-
-    <!-- CSS direto -->
-    <link rel="stylesheet" href="style.css">
-
+    <title>Apostila inteligente de CNC </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         .logo-container {
             text-align: center;
@@ -16,6 +13,11 @@
         .logo-img {
             max-width: 250px;
             height: auto;
+        }
+        /* Estilo para alinhar o microfone dentro do formulário */
+        #user-input-form {
+            display: flex;
+            align-items: center;
         }
         #mic-btn {
             background: none;
@@ -31,28 +33,90 @@
         }
     </style>
 </head>
-
 <body>
-<div class="chat-container">
-    <div class="header">
-        <div class="logo-container">
-            <img src="logo_panmachine.png" alt="Logo Panmachine" class="logo-img">
+    <div class="chat-container">
+        <div class="header">
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='logo_panmachine.png') }}" alt="Logo Panmachine" class="logo-img">
+    </div>
+    <h1>Apostila Inteligente de CNC</h1>
+    <p class="subtitle">FANUC e SIEMENS</p>
+    </div>
+        <div id="chat-box">
+            <div id="responses"></div>
         </div>
-        <h1>Apostila Inteligente de CNC</h1>
-        <p class="subtitle">FANUC e SIEMENS</p>
+        <form id="user-input-form">
+            <input type="text" id="user-input" placeholder="Digite sua mensagem..." required>
+            
+            <button type="button" id="mic-btn" title="Falar por voz">🎤</button>
+            
+            <button type="submit">Enviar</button>
+        </form>
     </div>
 
-    <div id="chat-box">
-        <div id="responses"></div>
-    </div>
+    <script>
+        const form = document.getElementById('user-input-form');
+        const input = document.getElementById('user-input');
+        const responses = document.getElementById('responses');
+        const chatBox = document.getElementById('chat-box');
+        const micBtn = document.getElementById('mic-btn');
 
-    <form id="user-input-form">
-        <input type="text" id="user-input" placeholder="Digite sua mensagem..." required>
-        <button type="button" id="mic-btn" title="Falar por voz">🎤</button>
-        <button type="submit">Enviar</button>
-    </form>
-</div>
+        // --- LÓGICA DE RECONHECIMENTO DE VOZ ---
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-<script src="script.js"></script>
+        if (SpeechRecognition) {
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'pt-BR';
+            recognition.interimResults = false;
+
+            micBtn.addEventListener('click', () => {
+                try {
+                    recognition.start();
+                    micBtn.innerHTML = "🔴"; // Muda ícone para indicando gravação
+                } catch (e) {
+                    console.log("Reconhecimento já está ativo.");
+                }
+            });
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                input.value = transcript; // Coloca o texto ouvido no campo
+                micBtn.innerHTML = "🎤";
+            };
+
+            recognition.onspeechend = () => {
+                recognition.stop();
+                micBtn.innerHTML = "🎤";
+            };
+
+            recognition.onerror = () => {
+                micBtn.innerHTML = "🎤";
+            };
+        } else {
+            micBtn.style.display = "none"; // Esconde o botão se o navegador não for compatível
+            console.log("Navegador não suporta reconhecimento de voz.");
+        }
+
+        // --- LÓGICA DO CHAT ---
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userMessage = input.value;
+            
+            responses.innerHTML += `<div class="message user-message"><span class="sender">Você:</span> ${userMessage}</div>`;
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userMessage }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                responses.innerHTML += `<div class="message bot-response"><span class="sender">Panmachine:</span> ${data.response}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            });
+        });
+    </script>
 </body>
 </html>
