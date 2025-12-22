@@ -1,20 +1,45 @@
 const API_URL = "https://chatbot-panmachine.onrender.com/";
-// ⬆️ troque pela URL real do seu Flask (Render / Railway / Fly.io)
 
-const form = document.getElementById("user-input-form");
-const input = document.getElementById("user-input");
-const chatBox = document.getElementById("chat-box");
+const form = document.getElementById('user-input-form');
+const input = document.getElementById('user-input');
+const responses = document.getElementById('responses');
+const chatBox = document.getElementById('chat-box');
+const micBtn = document.getElementById('mic-btn');
 
-form.addEventListener("submit", async (e) => {
+/* ---------- RECONHECIMENTO DE VOZ ---------- */
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'pt-BR';
+
+    micBtn.addEventListener('click', () => {
+        recognition.start();
+        micBtn.textContent = "🔴";
+    });
+
+    recognition.onresult = (event) => {
+        input.value = event.results[0][0].transcript;
+        micBtn.textContent = "🎤";
+    };
+
+    recognition.onend = () => {
+        micBtn.textContent = "🎤";
+    };
+} else {
+    micBtn.style.display = "none";
+}
+
+/* ---------- CHAT ---------- */
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const message = input.value.trim();
-    if (!message) return;
+    const userMessage = input.value.trim();
+    if (!userMessage) return;
 
-    // Mensagem do usuário
-    chatBox.innerHTML += `
+    responses.innerHTML += `
         <div class="message user-message">
-            <span class="sender">Você:</span> ${message}
+            <span class="sender">Você:</span> ${userMessage}
         </div>
     `;
 
@@ -24,29 +49,28 @@ form.addEventListener("submit", async (e) => {
     try {
         const response = await fetch(API_URL, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ message })
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userMessage })
         });
 
         const data = await response.json();
 
-        // Resposta do bot (permite HTML)
-        chatBox.innerHTML += `
+        responses.innerHTML += `
             <div class="message bot-response">
-                <span class="sender">Bot:</span> ${data.response}
+                <span class="sender">Panmachine:</span> ${data.response}
             </div>
         `;
 
         chatBox.scrollTop = chatBox.scrollHeight;
 
-    } catch (error) {
-        chatBox.innerHTML += `
+    } catch {
+        responses.innerHTML += `
             <div class="message bot-response">
-                <span class="sender">Bot:</span> Erro ao conectar com o servidor.
+                Erro ao conectar com o servidor.
             </div>
         `;
     }
 });
+
+
 
