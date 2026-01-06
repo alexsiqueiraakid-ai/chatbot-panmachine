@@ -36,6 +36,10 @@ def handle_input(user_input):
     elif any(cmd in user_input for cmd in ["parar o programa", "abrir a porta", "sem resetar", "sem resetar o programa"]):
         link = "https://www..............."
         return f'Veja como abrir a porta sem resetar o programa: <a href="{link}" target="_blank">Tutorial</a>'
+        
+    elif any(cmd in user_input for cmd in ["destravar o magazine", "tirar alarme da troca", "alarme na troca", "alarme de magazine"]):
+        link = "https://www..............."
+        return f'Veja como tirar alarme de troca da ferramenta: <a href="{link}" target="_blank">Tutorial</a>'
     
       # Códigos M e G comuns
     elif any(cmd in user_input for cmd in ["codigos g" , "g code", "códigos g"]):
