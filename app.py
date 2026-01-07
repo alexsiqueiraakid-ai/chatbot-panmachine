@@ -11,7 +11,7 @@ def handle_input(user_input):
     
     elif any(cmd in user_input for cmd in ["referenciar", "zerar ferramenta", "presset", "precetar", "precipitar"]):
         link = "https://www.youtube.com/watch?v=navfeH6Ycvk"
-        return f'Assista ao vídeo: <a href="{link}" target="_blank">Clique aqui para Referenciar</a>'
+        return f'Assista ao vídeo: <a href="{link}" target="_blank">Tutorial para pressetar</a>'
 
     elif any(cmd in user_input for cmd in ["ponto zero", "zerar a peça", "definir origem"]):
         link = "https://www.youtube.com/watch?v=SFcdutK9iYk"
