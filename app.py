@@ -13,7 +13,7 @@ def handle_input(user_input):
         link = "https://www.youtube.com/watch?v=navfeH6Ycvk"
         return f'Assista ao vídeo: <a href="{link}" target="_blank">Tutorial para pressetar</a>'
 
-    elif any(cmd in user_input for cmd in ["ponto zero", "zerar a peça", "zero peça, "definir origem"]):
+    elif any(cmd in user_input for cmd in ["ponto zero", "zerar a peça", "zerar peça", "zero peça, "definir origem"]):
         link = "https://www.youtube.com/watch?v=SFcdutK9iYk"
         return f'Veja como definir a origem: <a href="{link}" target="_blank">Tutorial Ponto Zero</a>'
 
