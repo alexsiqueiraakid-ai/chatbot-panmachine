@@ -112,10 +112,10 @@ def handle_input(user_input):
     elif any(cmd in user_input for cmd in ["pocket up/down", "pocket", "tecla pocket", "up/down"]):
         return "A função dessa tecla é subir ou descer o pote de ferramenta do magazine"
 
-    elif any(cmd in user_input for cmd in ["conv rev", "tecla conv rev"]):
+    elif any(cmd in user_input for cmd in ["conv rev", "couve rev", "tecla conv rev"]):
         return "A função dessa tecla é ligar o transportador de cavacos no sentido horário"
     
-    elif any(cmd in user_input for cmd in ["conv fwd", "tecla conv fwd"]):
+    elif any(cmd in user_input for cmd in ["conv fwd", "couve fwd", "tecla conv fwd"]):
         return "A função dessa tecla é ligar o transportador de cavacos no sentido anti-horário"
     
     elif any(cmd in user_input for cmd in ["air blast", "air", "tecla air blast"]):
